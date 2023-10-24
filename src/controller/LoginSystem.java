@@ -4,13 +4,11 @@ import Repository.LoginRepository;
 import java.util.Locale;
 import view.Menu;
 
-public class LoginSystem extends Menu<String> {
-
+public class LoginSystem extends Menu<String>{
     static String[] mc = {"Vietnamese", "English", "Exit"};
     LoginRepository program;
-    Locale vietnamese = new Locale("vi");
+    Locale vietnamese = new Locale("Vi");
     Locale english = Locale.ENGLISH;
-
     public LoginSystem() {
         super("\nLogin Program", mc);
         program = new LoginRepository();
@@ -29,5 +27,5 @@ public class LoginSystem extends Menu<String> {
                 System.exit(0);
         }
     }
-
+    
 }
