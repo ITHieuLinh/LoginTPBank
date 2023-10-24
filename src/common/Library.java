@@ -41,10 +41,10 @@ public class Library {
 //        }
 //    }
 
-//    public String getString(String mes){
-//        System.out.print(mes);
-//        return sc.nextLine();
-//    }
+    public String getString(String mes){
+        System.out.print(mes);
+        return sc.nextLine();
+    }
     
     public double checkInputDouble(String promt) {
         //loop until user input correct
@@ -59,17 +59,17 @@ public class Library {
         }
     }
     
-    public String inputString(String mes) {
-        System.out.print(mes);
-        while (true) {
-            String result = sc.nextLine();
-            if (result.isEmpty()) {
-                System.out.print("Enter again: ");
-            } else {
-                return result;
-            }
-        }
-    }
+//    public String inputString(String mes) {
+//        System.out.print(mes);
+//        while (true) {
+//            String result = sc.nextLine();
+//            if (result.isEmpty()) {
+//                System.out.print("Enter again: ");
+//            } else {
+//                return result;
+//            }
+//        }
+//    }
     
 //    public String checkInputPathFile(String promt) {
 //        System.out.print(promt);
@@ -202,9 +202,17 @@ public class Library {
         return sb.toString();
     }
     
+    public String getInputCaptcha(Locale language) {
+        String result = sc.nextLine();
+        return result;
+    }
+    
     public boolean checkInputCaptcha(String captchaGenerated, Locale language) {
         getWordLanguage(language, "enterCaptcha");
-        String captchaInput = checkInputString(language);
+        String captchaInput = getInputCaptcha(language);
+        if(captchaInput.length()==0){
+            return false;
+        }
         for (int i = 0; i < captchaInput.length(); i++) {
             if (!captchaGenerated.contains(Character.toString(captchaInput.charAt(i)))) {
                 return false;

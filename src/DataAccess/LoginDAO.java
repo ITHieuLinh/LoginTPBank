@@ -33,19 +33,31 @@ public class LoginDAO {
         int accountNumber = l.checkInputAccount(language);
         l.getWordLanguage(language, "enterPassword");
         String passString = l.checkInputPassword(language);
-        System.out.print("Captcha: ");
+
+//        String captchaGenerated = l.generateCaptchaText();
+//        System.out.println("Captcha: " + captchaGenerated);
+//        while (true) {
+//            if (l.checkInputCaptcha(captchaGenerated, language)) {
+//                l.getWordLanguage(language, "loginSuccess");
+//                System.out.println();
+//                userList.add(new User(accountNumber, passString, captchaGenerated));
+//                return;
+//            } else {
+//                l.getWordLanguage(language, "errCaptchaIncorrect");
+//                System.out.println("");
+//            }
+//        }
+
         String captchaGenerated = l.generateCaptchaText();
-        System.out.println(captchaGenerated);
-        while (true) {
-            if (l.checkInputCaptcha(captchaGenerated, language)) {
-                l.getWordLanguage(language, "loginSuccess");
-                System.out.println();
-                userList.add(new User(accountNumber, passString, captchaGenerated));
-                return;
-            } else {
-                l.getWordLanguage(language, "errCaptchaIncorrect");
-                System.out.println("");
-            }
-        }       
+        System.out.println("Captcha: " + captchaGenerated);
+        while (!l.checkInputCaptcha(captchaGenerated, language)) {
+            l.getWordLanguage(language, "errCaptchaIncorrect");
+            System.out.println("");
+            captchaGenerated = l.generateCaptchaText();
+            System.out.println("Captcha: " + captchaGenerated);
+        }
+        l.getWordLanguage(language, "loginSuccess");
+        System.out.println();
+        userList.add(new User(accountNumber, passString, captchaGenerated));
     }
 }
